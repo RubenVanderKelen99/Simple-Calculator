@@ -10,9 +10,9 @@ public class Calculator implements ActionListener {
     JTextField input;
     JPanel buttonPanel;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[9];
+    JButton[] functionButtons = new JButton[10];
     JButton addButton, subtractButton, multiplyButton, divideButton, 
-    clearButton, deleteButton, inverseButton, decimalButton, equalsButton;
+    clearButton, clearEntryButton, deleteButton, inverseButton, decimalButton, equalsButton;
 
     double number1=0;
     double number2=0;
@@ -41,36 +41,27 @@ public class Calculator implements ActionListener {
         multiplyButton = new JButton("*");
         divideButton = new JButton("/");
         clearButton = new JButton("C");
+        clearEntryButton = new JButton("CE");
         deleteButton = new JButton("←");
         inverseButton = new JButton("-(x)");
         decimalButton = new JButton(",");
-        equalsButton = new JButton("=");
-
-        addButton.setBounds(50, 115, 130, 60);
-        subtractButton.setBounds(206, 115, 130, 60);
-        multiplyButton.setBounds(363, 115, 130, 60);
-        divideButton.setBounds(520, 115, 130, 60);
-        clearButton.setBounds(520, 195, 130, 60);
-        deleteButton.setBounds(520, 275, 130, 60);
-        inverseButton.setBounds(50, 355, 130, 60);
-        decimalButton.setBounds(363, 355, 130, 60);
-        equalsButton.setBounds(520, 355, 130, 60);        
+        equalsButton = new JButton("=");   
 
         functionButtons[0] = addButton;
         functionButtons[1] = subtractButton;
         functionButtons[2] = multiplyButton;
         functionButtons[3] = divideButton;
         functionButtons[4] = clearButton;
-        functionButtons[5] = deleteButton;
-        functionButtons[6] = inverseButton;
-        functionButtons[7] = decimalButton;
-        functionButtons[8] = equalsButton;
+        functionButtons[5] = clearEntryButton;
+        functionButtons[6] = deleteButton;
+        functionButtons[7] = inverseButton;
+        functionButtons[8] = decimalButton;
+        functionButtons[9] = equalsButton;
 
-        for(int i=0; i<9; i++) {
+        for(int i=0; i<10; i++) {
             functionButtons[i].setFont(font);
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFocusable(false);
-            mainFrame.add(functionButtons[i]);
         }
 
         for(int i=0; i<10; i++) {
@@ -80,6 +71,32 @@ public class Calculator implements ActionListener {
             numberButtons[i].setFocusable(false);
         }
 
+        buttonPanel = new JPanel();
+        buttonPanel.setBounds(50, 115, 600, 300);
+        buttonPanel.setLayout(new GridLayout(5,4, 5, 5));
+
+        buttonPanel.add(functionButtons[0]);
+        buttonPanel.add(functionButtons[1]);
+        buttonPanel.add(functionButtons[2]);
+        buttonPanel.add(functionButtons[3]);
+        buttonPanel.add(numberButtons[7]);
+        buttonPanel.add(numberButtons[8]);
+        buttonPanel.add(numberButtons[9]);
+        buttonPanel.add(functionButtons[4]);
+        buttonPanel.add(numberButtons[4]);
+        buttonPanel.add(numberButtons[5]);
+        buttonPanel.add(numberButtons[6]);
+        buttonPanel.add(functionButtons[5]);
+        buttonPanel.add(numberButtons[1]);
+        buttonPanel.add(numberButtons[2]);
+        buttonPanel.add(numberButtons[3]);        
+        buttonPanel.add(functionButtons[6]);
+        buttonPanel.add(functionButtons[7]);
+        buttonPanel.add(numberButtons[0]);
+        buttonPanel.add(functionButtons[8]);
+        buttonPanel.add(functionButtons[9]);
+
+        mainFrame.add(buttonPanel);
         mainFrame.add(input);
         mainFrame.setVisible(true);
     }
