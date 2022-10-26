@@ -12,7 +12,7 @@ public class Calculator implements ActionListener {
     JButton[] numberButtons = new JButton[10];
     JButton[] functionButtons = new JButton[10];
     JButton addButton, subtractButton, multiplyButton, divideButton, 
-    clearButton, clearEntryButton, deleteButton, inverseButton, decimalButton, equalsButton;
+    clearButton, clearEntryButton, backspaceButton, inverseButton, decimalButton, equalsButton;
 
     double number1=0;
     double number2=0;
@@ -43,7 +43,7 @@ public class Calculator implements ActionListener {
         divideButton = new JButton("/");
         clearButton = new JButton("C");
         clearEntryButton = new JButton("CE");
-        deleteButton = new JButton("←");
+        backspaceButton = new JButton("←");
         inverseButton = new JButton("-(x)");
         decimalButton = new JButton(",");
         equalsButton = new JButton("=");   
@@ -54,7 +54,7 @@ public class Calculator implements ActionListener {
         functionButtons[3] = divideButton;
         functionButtons[4] = clearButton;
         functionButtons[5] = clearEntryButton;
-        functionButtons[6] = deleteButton;
+        functionButtons[6] = backspaceButton;
         functionButtons[7] = inverseButton;
         functionButtons[8] = decimalButton;
         functionButtons[9] = equalsButton;
@@ -128,6 +128,26 @@ public class Calculator implements ActionListener {
             }
             else {
                 input.setText("-" + input.getText());            
+            }
+        }
+
+        if(e.getSource() == clearButton) {
+            input.setText("0");
+            this.number1 = 0;
+            this.number2 = 0;
+            this.result = 0;
+        }
+
+        if(e.getSource() == clearEntryButton) {
+            input.setText("0");
+        }
+
+        if(e.getSource() == backspaceButton) {
+            if(input.getText().length() > 1){
+                input.setText(input.getText().substring(0, input.getText().length() - 1));
+            }
+            else if(input.getText() != "0") {
+                input.setText("0");
             }
         }
        
