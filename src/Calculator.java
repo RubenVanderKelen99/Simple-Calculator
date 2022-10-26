@@ -8,6 +8,7 @@ public class Calculator implements ActionListener {
 
     JFrame mainFrame;
     JTextField input;
+    JLabel label;
     JPanel buttonPanel;
     JButton[] numberButtons = new JButton[10];
     JButton[] functionButtons = new JButton[10];
@@ -36,6 +37,10 @@ public class Calculator implements ActionListener {
         input.setText("0");
         input.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         input.setBounds(50, 30, 600, 50);
+
+        label = new JLabel("");
+        label.setHorizontalAlignment(JLabel.RIGHT);
+        label.setBounds(50, 15, 600, 15);
 
         addButton = new JButton("+");
         subtractButton = new JButton("-");
@@ -99,6 +104,7 @@ public class Calculator implements ActionListener {
 
         mainFrame.add(buttonPanel);
         mainFrame.add(input);
+        mainFrame.add(label);
         mainFrame.setVisible(true);
     }
 
@@ -133,6 +139,8 @@ public class Calculator implements ActionListener {
 
         if(e.getSource() == clearButton) {
             input.setText("0");
+            label.setText("");
+            operator = Character.MIN_VALUE;
             number1 = 0;
             number2 = 0;
             result = 0;
@@ -156,9 +164,11 @@ public class Calculator implements ActionListener {
                 operator = '+';
                 number1 = Double.parseDouble(input.getText());
                 input.setText("0");    
+                label.setText(number1 + " " + operator);
             }
             else {
                 operator = '+';
+                label.setText(number1 + " " + operator);
             }
         }
 
@@ -166,10 +176,12 @@ public class Calculator implements ActionListener {
             if(operator == 0) {
                 operator = '-';
                 number1 = Double.parseDouble(input.getText());
-                input.setText("0");    
+                input.setText("0");   
+                label.setText(number1 + " " + operator); 
             }
             else {
                 operator = '-';
+                label.setText(number1 + " " + operator);
             }
         }
 
@@ -177,10 +189,12 @@ public class Calculator implements ActionListener {
             if(operator == 0) {
                 operator = '*';
                 number1 = Double.parseDouble(input.getText());
-                input.setText("0");    
+                input.setText("0");
+                label.setText(number1 + " " + operator);
             }
             else {
                 operator = '*';
+                label.setText(number1 + " " + operator);
             }
         }
 
@@ -188,10 +202,12 @@ public class Calculator implements ActionListener {
             if(operator == 0) {
                 operator = '/';
                 number1 = Double.parseDouble(input.getText());
-                input.setText("0");    
+                input.setText("0");
+                label.setText(number1 + " " + operator);    
             }
             else {
                 operator = '/';
+                label.setText(number1 + " " + operator);
             }
         }
         
@@ -212,10 +228,12 @@ public class Calculator implements ActionListener {
                     result = number1 / number2;
                     break;
                 }
-                
+                label.setText("");;               
+                number1 = 0;
+                number2 = 0;
+                operator = Character.MIN_VALUE;                
                 input.setText(String.valueOf(result));
                 operator = Character.MIN_VALUE;
-                number1 = result;               
             }
             else {
                 System.out.println("An operator was not defined");
