@@ -126,16 +126,16 @@ public class Calculator implements ActionListener {
             if(input.getText().startsWith("-")){
                 input.setText(input.getText().substring(1));
             }
-            else {
+            else if(!input.getText().equals("0")) {
                 input.setText("-" + input.getText());            
             }
         }
 
         if(e.getSource() == clearButton) {
             input.setText("0");
-            this.number1 = 0;
-            this.number2 = 0;
-            this.result = 0;
+            number1 = 0;
+            number2 = 0;
+            result = 0;
         }
 
         if(e.getSource() == clearEntryButton) {
@@ -148,6 +148,50 @@ public class Calculator implements ActionListener {
             }
             else if(input.getText() != "0") {
                 input.setText("0");
+            }
+        }
+
+        if(e.getSource() == addButton) {
+            if(operator == 0) {
+                operator = '+';
+                number1 = Double.parseDouble(input.getText());
+                input.setText("0");    
+            }
+            else {
+                operator = '+';
+            }
+        }
+
+        if(e.getSource() == subtractButton) {
+            if(operator == 0) {
+                operator = '-';
+                number1 = Double.parseDouble(input.getText());
+                input.setText("0");    
+            }
+            else {
+                operator = '-';
+            }
+        }
+
+        if(e.getSource() == multiplyButton) {
+            if(operator == 0) {
+                operator = '*';
+                number1 = Double.parseDouble(input.getText());
+                input.setText("0");    
+            }
+            else {
+                operator = '*';
+            }
+        }
+
+        if(e.getSource() == divideButton) {
+            if(operator == 0) {
+                operator = '/';
+                number1 = Double.parseDouble(input.getText());
+                input.setText("0");    
+            }
+            else {
+                operator = '/';
             }
         }
        
