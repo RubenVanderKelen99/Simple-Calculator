@@ -33,6 +33,7 @@ public class Calculator implements ActionListener {
         input.setEditable(false);
         input.setHorizontalAlignment(JTextField.RIGHT);
         input.setFont(font);
+        input.setText("0");
         input.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         input.setBounds(50, 30, 600, 50);
 
@@ -103,7 +104,17 @@ public class Calculator implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
+
+        for (int i = 0; i < 10; i++) {
+            if(e.getSource() == numberButtons[i]) {
+                if(input.getText().equals("0")) {
+                    input.setText(Integer.toString(i));
+                }
+                else {
+                    input.setText(input.getText() + Integer.toString(i));;
+                }
+            }
+        }
         
     }    
 }
