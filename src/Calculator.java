@@ -194,6 +194,33 @@ public class Calculator implements ActionListener {
                 operator = '/';
             }
         }
+        
+        if(e.getSource() == equalsButton) {
+            if(operator != 0) {
+                number2 = Double.parseDouble(input.getText());
+                switch(operator) {
+                    case '+':
+                    result = number1 + number2;
+                    break;
+                    case '-':
+                    result = number1 - number2;
+                    break;
+                    case '*':
+                    result = number1 * number2;
+                    break;
+                    case '/':
+                    result = number1 / number2;
+                    break;
+                }
+                
+                input.setText(String.valueOf(result));
+                operator = Character.MIN_VALUE;
+                number1 = result;               
+            }
+            else {
+                System.out.println("An operator was not defined");
+            }
+        }
        
     }    
 }
