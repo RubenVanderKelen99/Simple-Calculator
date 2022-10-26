@@ -27,7 +27,7 @@ public class Calculator implements ActionListener {
         mainFrame = new JFrame("Simple-Calculator");        
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.setSize(700, 500);
-		mainFrame.setLayout(null);
+        mainFrame.setLayout(null);
 
         input = new JTextField();
         input.setEditable(false);
@@ -108,13 +108,28 @@ public class Calculator implements ActionListener {
         for (int i = 0; i < 10; i++) {
             if(e.getSource() == numberButtons[i]) {
                 if(input.getText().equals("0")) {
-                    input.setText(Integer.toString(i));
+                    input.setText(String.valueOf(i));
                 }
                 else {
-                    input.setText(input.getText() + Integer.toString(i));;
+                    input.setText(input.getText() + String.valueOf(i));;
                 }
             }
         }
-        
+
+        if(e.getSource() == decimalButton) {
+            if(!input.getText().contains(".")) {
+                input.setText(input.getText() + ".");        
+            }
+        }
+
+        if(e.getSource() == inverseButton) {
+            if(input.getText().startsWith("-")){
+                input.setText(input.getText().substring(1));
+            }
+            else {
+                input.setText("-" + input.getText());            
+            }
+        }
+       
     }    
 }
